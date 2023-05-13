@@ -1,0 +1,6 @@
+[nginx-quic]
+name=nginx-quic repo
+baseurl=https://packages.nginx.org/nginx-quic/rhel/9/$basearch/
+gpgcheck=1
+enabled=1
+gpgkey=https://nginx.org/keys/nginx_signing.key
