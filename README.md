@@ -47,3 +47,6 @@
 - 原软件或依赖软件仍保持其原有授权。
 - 独立于原软件或依赖软件之外编写的代码、辅助软件、使用方法、文档等，是GNU General Public License v3.0授权。
 - 譬如：XXX Community Server 1.0.1是基于GPL v2.0授权，我们编写的辅助软件start_XXX.sh和文档是基于GPL v3.0。
+
+## ❔ 其他
+- 1、使用英文目录名是为了避免URL中出现转码字符。
