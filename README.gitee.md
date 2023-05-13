@@ -38,5 +38,12 @@
 ## 🔑 用途
 - 与 Nginx 的当前用途相同。
 
+## 📚 当前分享内容：
+
+- [价值分析](./nginx-quic/3011_Value_Analysis)
+- [编译取包](./nginx-quic/3021_Compile_or_Package)
+- [部署配置](./nginx-quic/3061_Deploy_Config)
+- [性能测试](./nginx-quic/3121_Performance_Testing)
+
 ## 📶 技术交流群
 深圳运维圈 QQ交流群：216589280 [点击加入](https://jq.qq.com/?_wv=1027&k=tdDtDoUp)
