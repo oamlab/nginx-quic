@@ -30,43 +30,132 @@ dnf install nginx-quic
 
 ## CentOS 7：
 
-#### 1、编译安装...
+[Nginx-QUIC官方安装文档](https://quic.nginx.org/readme.html)
+
+#### 1、编译主机与操作系统
 - 用于编译的机器，推荐为8核32G
 - 操作系统为CentOS 7.x.xxxx x86 64bit
 
-#### 2、编译安装...
-- ...
+#### 2、安装相关的软件
+- 安装部分基础组件
 
-#### 3、编译安装...
-- ...
-
-#### 4、编译安装...
-- ...
-
-#### 5、编译安装 gcc-11.1.0
-- 编译gcc
 ``` bash
+yum install epel-release.noarch
+yum install "Development Tools"
+yum install lrzsz wget unzip hg git gcc-c++ make automake bzip2
+yum install libunwind-devel openssl-devel
+yum install go
+```
+
+#### 3、编译安装 gcc-11.1.0
+- 编译安装gcc
+
+``` bash
+wget http://ftp.gnu.org/gnu/gcc/gcc-10.1.0/gcc-10.1.0.tar.gz
+
+tar -zxvf gcc-11.1.0.tar.gz
+cd gcc-11.1.0/
+
+./contrib/download_prerequisites
+2023-04-26 00:00:00 URL:http://gcc.gnu.org/pub/gcc/infrastructure/gmp-6.1.0.tar.bz2 [2383840/2383840] -> "./gmp-6.1.0.tar.bz2" [1]
+2023-04-26 00:00:00 URL:http://gcc.gnu.org/pub/gcc/infrastructure/mpfr-3.1.4.tar.bz2 [1279284/1279284] -> "./mpfr-3.1.4.tar.bz2" [1]
+2023-04-26 00:00:00 URL:http://gcc.gnu.org/pub/gcc/infrastructure/mpc-1.0.3.tar.gz [669925/669925] -> "./mpc-1.0.3.tar.gz" [1]
+2023-04-26 00:00:00 URL:http://gcc.gnu.org/pub/gcc/infrastructure/isl-0.18.tar.bz2 [1658291/1658291] -> "./isl-0.18.tar.bz2" [1]
+
+yum install bzip2
+
+bzip2 -d gmp-6.1.0.tar.bz2
+tar xf gmp-6.1.0.tar gmp-6.1.0
+cd gmp-6.1.0
+./configure --prefix=/usr/local/gmp-6.1.0
+make -j8
+make install
+ll /usr/local/gmp-6.1.0
+
+bzip2 -d mpfr-3.1.4.tar.bz2
+tar xf mpfr-3.1.4.tar mpfr-3.1.4
+cd ./mpfr-3.1.4
+./configure --prefix=/usr/local/mpfr-3.1.4 --with-gmp=/usr/local/gmp-6.1.0
+make -j8
+make install
+ll /usr/local/mpfr-3.1.4
+
+tar xzvf mpc-1.0.3.tar.gz
+cd ./mpc-1.0.3
+./configure --prefix=/usr/local/mpc-1.0.3 --with-gmp=/usr/local/gmp-6.1.0 --with-mpfr=/usr/local/mpfr-3.1.4
+make -j8
+make install
+ll /usr/local/mpc-1.0.3
+
+bzip2 -d isl-0.18.tar.bz2
+tar xf isl-0.18.tar isl-0.18
+cd ./isl-0.18
+./configure -prefix=/usr/local/isl-0.18 --with-gmp-prefix=/usr/local/gmp-6.1.0
+make -j8
+make install
+ll /usr/local/isl-0.18
+
 ./configure -prefix=/usr/local/gcc-11.1.0 --enable-threads=posix --disable-checking --disable-multilib --enable-languages=c,c++ --with-gmp=/usr/local/gmp-6.1.0 --with-mpfr=/usr/local/mpfr-3.1.4 --with-mpc=/usr/local/mpc-1.0.3
+make -j8
+make install
+
+cd /bin
+mv gcc gcc_bak
+mv g++ g++_bak
+mv c++ c++_bak
+ln -s /usr/local/gcc-11.1.0/bin/gcc gcc
+ln -s /usr/local/gcc-11.1.0/bin/g++ g++
+ln -s /usr/local/gcc-11.1.0/bin/c++ c++
+gcc -v
+
+echo "export LD_LIBRARY_PATH=/usr/local/gcc-11.1.0/lib:/usr/local/gcc-11.1.0/lib64:$LD_LIBRARY_PATH" >> /etc/profile
+cat /etc/profile
+source /etc/profile
+# reboot
+```
+
+#### 4、编译安装 cmake
+- 编译安装cmake
+
+``` bash
+yum remove cmake
+wget https://cmake.org/files/v3.18/cmake-3.18.2.tar.gz
+tar -zxvf cmake-3.18.2.tar.gz
+cd cmake-3.18.2
+# make uninstall
+./bootstrap
+gmake -j8
+gmake install
+cmake -version
+```
+
+#### 5、编译安装 boringssl
+- 编译安装boringssl
+
+``` bash
+git clone https://github.com/google/boringssl.git
+cd boringssl
+mkdir build
+cd build
+cmake ../
 make -j8
 make install
 ```
 
-#### 6、编译安装...
-- ...
-
-#### 7、编译安装...
-- ...
-
-#### 8、编译安装Nginx-QUIC
-- 编译时长大概为30分钟
+#### 7、编译安装Nginx-QUIC
+- 获取Nginx-QUIC源码包: https://hg.nginx.org/nginx-quic
 
 ``` bash
+wget http://labs.frickle.com/files/ngx_cache_purge-2.3.tar.gz
+tar zxf ngx_cache_purge-2.3.tar.gz
+
+unzip nginx.zip
 ./auto/configure --prefix=/usr/local/nginx --add-module=/software/ngx_cache_purge-2.3 --with-http_stub_status_module --with-http_addition_module  --with-http_ssl_module  --with-http_v2_module --with-http_v3_module --with-cc-opt="-I/software/boringssl/include" --with-ld-opt="-L/software/boringssl/build/ssl -L/software/boringssl/build/crypto"
 make -j8
 make install
 ```
 
-#### 9、制品
+#### 8、制品
 - [nginx.zip](./nginx.zip)
 
 ``` bash
