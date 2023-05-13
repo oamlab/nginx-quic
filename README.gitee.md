@@ -17,10 +17,10 @@
 ---
 
 ## 🌏 前言
-- [在线文档：https://github.com/oamlab/nginx-quic](https://github.com/oamlab/nginx-quic)
+- [在线文档：https://gitee.com/oamlab/nginx-quic](https://gitee.com/oamlab/nginx-quic)
 - [Online Documentation：https://github.com/oamlab/nginx-quic/](https://github.com/oamlab/nginx-quic/blob/main/README.English.md)
 
-*[国内访问请使用国内资料仓gitee入口，点击进入](https://gitee.com/oamlab/nginx-quic)
+*[国际访问请使用国际资料仓github入口，点击进入](https://github.com/oamlab/nginx-quic)
 
 ## 🔃 提交代码
 - 提交代码路径：个人分支 >> develop >> main
