@@ -9,7 +9,7 @@
 <p align="center">
    <a href="https://github.com/oamlab/nginx-quic">github</a> | 
    <a href="https://gitee.com/oamlab/nginx-quic">gitee</a> | 
-   <a href="https://github.com/oamlab/nginx-quic/blob/main/README.English.md">English</a>
+   <a href="./README.English.md">English</a>
 </p>
 
 <p align="center"></p>
