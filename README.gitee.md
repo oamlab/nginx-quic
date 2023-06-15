@@ -61,3 +61,7 @@
 
 ## ❔ 其他
 - 1、使用英文目录名是为了避免URL中出现转码字符。
+
+<p align="center">
+	<img alt="OAMLab_nginx_gitee_img" src="https://www.wegoodgoodstudydaydayup.com/nginx_gitee.webp?v=1">
+</p>
