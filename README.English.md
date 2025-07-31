@@ -24,7 +24,7 @@
 | Full Name						 | CONTACT         |
 |-----------------|-----------------|
 | **Andy Yao**    | 77810419@qq.com |
-| **XXX**         | XXX@XXX.com     |
+| **XXX**         | example@example.localhost     |
 
 ## 🔒 Background
 - Nginx-QUIC supports the HTTP/3 protocol and uses the UDP protocol to transmit http requests, which improves the web page transmission efficiency of the website and speeds up the web page display, especially in cross-region and cross-hemisphere access.
